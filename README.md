@@ -5,7 +5,7 @@ This tool validates network segmentation for PCI DSS Requirement 1.2.1, ensuring
 
 ## Setup
 ```bash
-git clone https://github.com/<user>/pci_segmentation_validator.git
+git clone https://github.com/martinboratto/pci_segmentation_validator.git
 cd pci_segmentation_validator
 ```
 Dependencies
