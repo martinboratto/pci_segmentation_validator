@@ -21,6 +21,40 @@ python main.py --format markdown
 python main.py --format html
 ```
 
+And in your ```main.py```:
+```
+# pci_segmentation_validator/main.py
+import argparse
+import json
+from validator import SegmentationValidator
+from report_generator import CombinedReportGenerator
+
+def load_file(path):
+    with open(path) as f:
+        return json.load(f)
+
+def main():
+    parser = argparse.ArgumentParser(description="PCI DSS Segmentation Validator")
+    parser.add_argument("--format", choices=["markdown", "html"], default="markdown",
+                        help="Output format for the report")
+    args = parser.parse_args()
+
+    cde_inventory = load_file("cde_inventory.json")
+    network_rules = load_file("network_rules.json")
+    exceptions = load_file("allowed_exceptions.json")
+
+    validator = SegmentationValidator(cde_inventory, network_rules, exceptions)
+    results = validator.run_validation()
+
+    report = CombinedReportGenerator(results)
+    report.generate(format=args.format, filename="audit_report")
+
+if __name__ == "__main__":
+    main()
+
+```
+
+
 Example Output
 See sample_output/audit_report.md and sample_output/audit_report.html
 
