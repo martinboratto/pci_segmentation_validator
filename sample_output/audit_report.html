@@ -1,1 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>PCI DSS Segmentation Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1, h2 { color: #2c3e50; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f4f4f4; }
+    .critical { background-color: #e74c3c; color: white; }
+    .high { background-color: #e67e22; color: white; }
+    .medium { background-color: #f1c40f; }
+    .low { background-color: #2ecc71; color: white; }
+    .compliant { background-color: #27ae60; color: white; }
+    .exception { background-color: #2980b9; color: white; }
+    .ambiguous { background-color: #95a5a6; color: white; }
+  </style>
+</head>
+<body>
+  <h1>PCI DSS Segmentation Validation Report</h1>
+  <p><strong>Generated:</strong> 2026-02-26 18:15:00</p>
+
+  <h2>Executive Summary</h2>
+  <ul>
+    <li>Total rules analyzed: 30</li>
+    <li>Segmentation compliance: 82%</li>
+    <li>Critical findings: 3</li>
+  </ul>
+
+  <h2>Violations</h2>
+  <table>
+    <tr>
+      <th>Rule ID</th><th>Source</th><th>Destination</th><th>Port</th>
+      <th>Requirement</th><th>Risk</th><th>Reason</th><th>Remediation</th>
+    </tr>
+    <tr class="critical">
+      <td>sg-aws-payment-api-inbound</td>
+      <td>0.0.0.0/0</td>
+      <td>payment-api-prod</td>
+      <td>443</td>
+      <td>1.2.1</td>
+      <td>Critical</td>
+      <td>Overly permissive inbound rule to CDE</td>
+      <td>Restrict source to CDE IP range</td>
+    </tr>
+    <tr class="high">
+      <td>logging-to-vault</td>
+      <td>logging-service</td>
+      <td>tokenization-vault</td>
+      <td>9200</td>
+      <td>1.2.1</td>
+      <td>High</td>
+      <td>Outbound CDE traffic to non-CDE logging system</td>
+      <td>Route logs via approved SIEM collector</td>
+    </tr>
+  </table>
+
+  <h2>Compliant Flows</h2>
+  <table>
+    <tr><th>Rule ID</th><th>Source</th><th>Destination</th><th>Port</th><th>Provider</th></tr>
+    <tr class="compliant">
+      <td>gcp-analytics-to-vault</td>
+      <td>analytics-db</td>
+      <td>tokenization-vault</td>
+      <td>5432</td>
+      <td>gcp_firewall</td>
+    </tr>
+  </table>
+
+  <h2>Exceptions</h2>
+  <table>
+    <tr><th>Rule ID</th><th>Source</th><th>Destination</th><th>Port</th><th>Status</th></tr>
+    <tr class="exception">
+      <td>monitoring-agent-exception</td>
+      <td>monitoring-agent</td>
+      <td>payment-api-prod</td>
+      <td>9090</td>
+      <td>Compliant (Exception)</td>
+    </tr>
+  </table>
+
+  <h2>Ambiguities (Requires Manual Review)</h2>
+  <table>
+    <tr><th>Rule ID</th><th>Source</th><th>Destination</th><th>Reason</th></tr>
+    <tr class="ambiguous">
+      <td>corp-laptop-to-vault</td>
+      <td>employee-laptop</td>
+      <td>tokenization-vault</td>
+      <td>Unclear if corporate endpoints should access CDE</td>
+    </tr>
+  </table>
+</body>
+</html>
 
