@@ -1,0 +1,12 @@
+{
+  "exceptions": [
+    {
+      "source": "monitoring-agent",
+      "destination": "payment-api-prod",
+      "port": 9090,
+      "justification": "Prometheus metrics scraping for SOC 2 monitoring",
+      "approved_by": "CISO",
+      "expires": "2025-12-31"
+    }
+  ]
+}
