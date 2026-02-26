@@ -5,8 +5,15 @@ This tool validates network segmentation for PCI DSS Requirement 1.2.1, ensuring
 
 ## Setup
 ```bash
-git clone <repo-url>
+git clone https://github.com/<user>/pci_segmentation_validator.git
 cd pci_segmentation_validator
+```
+Dependencies
+```
+python3 -m venv venv
+source venv/bin/activate   # En Linux/Mac
+venv\Scripts\activate      # En Windows
+
 pip install -r requirements.txt
 ```
 
@@ -58,6 +65,14 @@ if __name__ == "__main__":
 Example Output
 See sample_output/audit_report.md and sample_output/audit_report.html
 
+# PCI DSS Segmentation Validation Report
+**Generated:** 2026-02-26 18:20:00
+
+## Executive Summary
+- Total rules analyzed: 30
+- Segmentation compliance: 82%
+- Critical findings: 3
+
 ---
 
 ## 📑 Design Decisions & Compliance Reasoning (docs/design_decisions.md)
@@ -84,4 +99,8 @@ Logging and monitoring require data flows from CDE. To balance, we flagged these
 ---
 
 ## 📊 Example Audit Report (Markdown)
+- Red: Critical findings
+- Green: Correct workflows
+- Blue: Approved exceptions
+- Gray: Ambiguities and/or for manual review.
 
