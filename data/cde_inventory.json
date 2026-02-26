@@ -1,0 +1,19 @@
+{
+  "systems": [
+    {"id": "payment-api-prod", "type": "service", "environment": "production", "cde_status": "in_cde", "justification": "Receives raw PAN", "data_types": ["pan", "cvv"]},
+    {"id": "tokenization-vault", "type": "database", "environment": "production", "cde_status": "in_cde", "justification": "Stores PAN before tokenization", "data_types": ["pan"]},
+    {"id": "webhook-processor", "type": "service", "environment": "production", "cde_status": "in_cde", "justification": "Handles raw PAN in callbacks", "data_types": ["pan"]},
+    {"id": "analytics-db", "type": "database", "environment": "production", "cde_status": "out_of_cde", "justification": "Stores tokenized references", "data_types": ["tokens"]},
+    {"id": "merchant-dashboard", "type": "webapp", "environment": "production", "cde_status": "out_of_cde", "justification": "UI for merchants", "data_types": ["tokens"]},
+    {"id": "monitoring-agent", "type": "service", "environment": "production", "cde_status": "out_of_cde", "justification": "Scrapes metrics", "data_types": ["metrics"]},
+    {"id": "logging-service", "type": "service", "environment": "production", "cde_status": "out_of_cde", "justification": "Collects logs", "data_types": ["logs"]},
+    {"id": "ci-cd-runner", "type": "service", "environment": "dev", "cde_status": "out_of_cde", "justification": "Build pipeline", "data_types": []},
+    {"id": "fraud-detection", "type": "service", "environment": "production", "cde_status": "out_of_cde", "justification": "Uses tokenized PAN", "data_types": ["tokens"]},
+    {"id": "3ds-auth-service", "type": "service", "environment": "production", "cde_status": "in_cde", "justification": "Decrypts PAN for authentication", "data_types": ["pan"]},
+    {"id": "internal-admin", "type": "webapp", "environment": "production", "cde_status": "out_of_cde", "justification": "Admin tools", "data_types": []},
+    {"id": "merchant-api", "type": "service", "environment": "production", "cde_status": "out_of_cde", "justification": "Tokenized PAN only", "data_types": ["tokens"]},
+    {"id": "backup-db", "type": "database", "environment": "production", "cde_status": "in_cde", "justification": "Backup of PAN vault", "data_types": ["pan"]},
+    {"id": "siem-collector", "type": "service", "environment": "production", "cde_status": "out_of_cde", "justification": "Security logs", "data_types": ["logs"]},
+    {"id": "employee-laptop", "type": "endpoint", "environment": "corp", "cde_status": "out_of_cde", "justification": "Workstation", "data_types": []}
+  ]
+}
