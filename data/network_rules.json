@@ -1,0 +1,11 @@
+{
+  "rules": [
+    {"id": "sg-aws-payment-api-inbound", "source": "0.0.0.0/0", "destination": "payment-api-prod", "protocol": "tcp", "port": 443, "action": "allow", "provider": "aws_security_group"},
+    {"id": "gcp-analytics-to-vault", "source": "analytics-db", "destination": "tokenization-vault", "protocol": "tcp", "port": 5432, "action": "allow", "provider": "gcp_firewall"},
+    {"id": "k8s-monitoring-to-payment", "source": "monitoring-agent", "destination": "payment-api-prod", "protocol": "tcp", "port": 9090, "action": "allow", "provider": "k8s_networkpolicy"},
+    {"id": "corp-laptop-to-vault", "source": "employee-laptop", "destination": "tokenization-vault", "protocol": "tcp", "port": 3306, "action": "allow", "provider": "aws_security_group"},
+    {"id": "fraud-to-3ds", "source": "fraud-detection", "destination": "3ds-auth-service", "protocol": "tcp", "port": 443, "action": "allow", "provider": "gcp_firewall"},
+    {"id": "logging-to-vault", "source": "logging-service", "destination": "tokenization-vault", "protocol": "tcp", "port": 9200, "action": "allow", "provider": "aws_security_group"}
+    // ... add ~25 more rules mixing compliant, violations, exceptions
+  ]
+}
