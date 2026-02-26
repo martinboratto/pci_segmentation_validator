@@ -8,6 +8,7 @@ This tool validates network segmentation for PCI DSS Requirement 1.2.1, ensuring
 git clone <repo-url>
 cd pci_segmentation_validator
 pip install -r requirements.txt
+```
 
 ## Dependencies:
 Python 3.9+
