@@ -11,18 +11,18 @@ pip install -r requirements.txt
 ```
 
 ## Dependencies:
-Python 3.9+
-No external libraries required (uses stdlib)
+- Python 3.9+
+- No external libraries required (uses stdlib)
 
 ## Usage
 Run validator with sample data:
+```bash
 python main.py --format markdown
 python main.py --format html
-
+```
 
 Example Output
 See sample_output/audit_report.md and sample_output/audit_report.html
-
 
 ---
 
@@ -45,7 +45,7 @@ Logging and monitoring require data flows from CDE. To balance, we flagged these
 **Future Enhancements**  
 - Multi-cloud raw config ingestion.  
 - Segmentation scoring per system.  
-- Continuous monitoring mode (`--watch`).  
+- Continuous monitoring mode (`--watch`).
 
 ---
 
